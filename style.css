@@ -3,7 +3,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .fontSize{
@@ -15,6 +15,7 @@ body{
     height: 600px;
     display: flex;
     flex-direction: column;
+    background-color: black;
 }
 
 .screen {
@@ -23,6 +24,7 @@ body{
     text-justify: auto;
     padding:18px;
     font-size: 36px;
+    background-color: white;
 }
 
 .keypad{
@@ -30,6 +32,7 @@ body{
     flex-direction: row;
     margin:4px;
     flex:4;
+    
 }
 
 .numpad{
@@ -37,6 +40,7 @@ body{
     flex-direction: column;
     flex: 3;
     margin :8px;
+
 }
 
 .numrow{
@@ -50,11 +54,13 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .numrow li{
     flex: 1;
     margin: 4px;
+    background-color: white;
 }
 
 .numpad div{ 
@@ -68,11 +74,13 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
 }
 
 .operators li{
     flex: 1;
     margin :8px;
+    background-color: white;
 }
 
 .addBorder{
@@ -90,5 +98,9 @@ li{
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+li:hover,.zeroBtn:hover{
+    background-color:lightgray;
 }
 
