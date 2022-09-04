@@ -19,12 +19,18 @@ body{
 }
 
 .screen {
-    margin: 4px;
+    margin: 20px 20px 0px 20px;
     flex:1;
     text-justify: auto;
-    padding:18px;
-    font-size: 36px;
+    font-size: 20px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding:8px 4px 8px 4px;
+}
+
+.screen p{
+    word-wrap: break-word;
 }
 
 .keypad{
@@ -60,7 +66,7 @@ body{
 .numrow li{
     flex: 1;
     margin: 4px;
-    background-color: white;
+    background-color: seagreen;
 }
 
 .numpad div{ 
@@ -80,7 +86,7 @@ body{
 .operators li{
     flex: 1;
     margin :8px;
-    background-color: white;
+    background-color:lightseagreen;
 }
 
 .addBorder{
@@ -91,6 +97,7 @@ body{
 ul{
     padding: 0px;
 }
+
 li{
     list-style-type: none;
     border: solid thin;

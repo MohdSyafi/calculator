@@ -4,38 +4,42 @@
         <meta charset="utf-8"/>
         <title>Calculator</title>
         <link rel="stylesheet" href="./style.css"/>
-        <script href="./script.js"></script>
+        <script src="./script.js" defer></script>
     </header>
     <body class="fontSize">
         <div class="calculator addBorder">
             <div class="screen addBorder">
-                <p>000</p>
+                <p class="screen-text"></p>
+                <p class="screen-result"></p>
             </div>
             <div class="keypad addBorder">
                 <ul class="numpad">
                     <div class="numrow">
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
+                        <li data-key="1">1</li>
+                        <li data-key="2">2</li>
+                        <li data-key="3">3</li>
                     </div>
                     <div class="numrow">
-                        <li>4</li>
-                        <li>5</li>
-                        <li>6</li>
+                        <li data-key="4">4</li>
+                        <li data-key="5">5</li>
+                        <li data-key="6">6</li>
                     </div>
                     <div class="numrow">
-                        <li>7</li>
-                        <li>8</li>
-                        <li>9</li>
+                        <li data-key="7">7</li>
+                        <li data-key="8">8</li>
+                        <li data-key="9">9</li>
                     </div>
-                    <div class="zeroBtn addBorder">0</div>
+                    <div class="numrow">
+                        <li class="zeroBtn" data-key="0">0</li>
+                        <li data-key="clear">Clear</li>
+                    </div>
                 </ul>         
                 <ul class="operators">
-                    <li>+</li>
-                    <li>-</li>
-                    <li>x</li>
-                    <li>÷</li>
-                    <li>=</li>
+                    <li data-key="+">+</li>
+                    <li data-key="-">-</li>
+                    <li data-key="x">x</li>
+                    <li data-key="÷">÷</li>
+                    <li data-key="=">=</li>
                 </ul>
           
             </div>   
