@@ -15,29 +15,32 @@ body{
     height: 600px;
     display: flex;
     flex-direction: column;
-    background-color: black;
+    border-radius: 16px;
+    background-color: aliceblue;
 }
 
 .screen {
-    margin: 20px 20px 0px 20px;
-    flex:1;
-    text-justify: auto;
+    margin: 20px;
+    height: 70px;
+    flex-basis: 20%;
     font-size: 20px;
     background-color: white;
+    padding:8px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
-    padding:8px 4px 8px 4px;
 }
 
-.screen p{
+.screen div{
     word-wrap: break-word;
+    flex-basis: 50%;
 }
 
 .keypad{
     display: flex;
     flex-direction: row;
     margin:4px;
-    flex:4;
+    flex-basis: 80%;
     
 }
 
@@ -90,8 +93,7 @@ body{
 }
 
 .addBorder{
-    border: solid thin;
-    border-color: black;
+    border: solid medium;
 }
 
 ul{
@@ -100,11 +102,11 @@ ul{
 
 li{
     list-style-type: none;
-    border: solid thin;
-    border-color: black;
+    border: solid medium;
     display:flex;
     justify-content: center;
     align-items: center;
+    border-radius: 8px;
 }
 
 li:hover,.zeroBtn:hover{

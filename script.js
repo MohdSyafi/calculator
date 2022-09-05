@@ -26,26 +26,71 @@ function operate( operator , a, b){
 
 };
 
+function classifyArrays(expArray){
+
+    let classifyArray = [];
+    let number= "";
+
+    for(let i = 0;i<expArray.length;i++){
+
+       if(operators.includes(expArray[i])){
+            classifyArray.push(number);
+            classifyArray.push(expArray[i]);
+            number= "";
+       }else{
+        number += expArray[i];
+       }
+
+       if(i==expArray.length-1){
+        classifyArray.push(number);
+       }
+    }
+
+    return classifyArray;
+}
+
 function updateScreen(e){
+    let currentScreenText = document.querySelector(".screen-text");
+    let currentScreenResult = document.querySelector(".screen-result");
+    
+    const key = e.target.getAttribute("data-key");
 
-    let currentText = currentScreenText.textContent;
-    const operator = e.target.getAttribute("data-key");
+    if(key=="clear"){
 
-    if(operator=="=")
-        currentScreenResult.textContent = "= result";
-    else if(operator=="clear")
-    {
         currentScreenText.textContent = "";
         currentScreenResult.textContent = "";
+
+    }else if(operators.includes(key)){
+
+        if(firstNum == 0){
+
+            firstNum = Number.parseInt(currentScreenResult.textContent);
+            currentScreenText.textContent = currentScreenResult.textContent += key;
+            currentOperator = key;
+            currentScreenResult.textContent = "";
+
+        }else{
+           
+            secondNum = Number.parseInt(currentScreenResult.textContent);
+            result = operate(currentOperator,firstNum,secondNum);
+            currentScreenText.textContent = result += key;
+            firstNum = result;  
+            currentOperator = key;       
+            currentScreenResult.textContent = "";
+
+        }
+
+    }else{
+        currentScreenResult.textContent += key;
     }
-    else
-        currentScreenText.textContent = currentText+= `${operator}`;
 
 }
 
-let currentScreenText = document.querySelector(".screen-text");
-let currentScreenResult = document.querySelector(".screen-result");
+const operators = ["+","-","x","÷","="];
+
 const keypads = document.querySelectorAll("li");
+let currentOperator = "";
+let firstNum = 0,secondNum = 0;
 
 keypads.forEach(keypad=>keypad.addEventListener('click', updateScreen));
 
