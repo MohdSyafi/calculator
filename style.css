@@ -23,7 +23,7 @@ body{
     margin: 20px;
     height: 70px;
     flex-basis: 20%;
-    font-size: 20px;
+    font-size: 32px;
     background-color: white;
     padding:8px;
     border-radius: 8px;
@@ -69,7 +69,7 @@ body{
 .numrow li{
     flex: 1;
     margin: 4px;
-    background-color: seagreen;
+    background-color:bisque;
 }
 
 .numpad div{ 
@@ -89,7 +89,7 @@ body{
 .operators li{
     flex: 1;
     margin :8px;
-    background-color:lightseagreen;
+    background-color:darksalmon;
 }
 
 .addBorder{
