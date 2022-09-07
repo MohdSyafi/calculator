@@ -11,20 +11,16 @@ function operate( operator , a, b){
     switch(operator){
         case '+':
             return add(a,b);
-            break;
         case '-':
             return subtract(a,b);
-            break;
         case 'x':
             return  multiply(a,b);
-            break;
         case '÷':
             console.log(a);
             if(a == 0 || b == 0){
                 return "ERROR";
             }else
                 return divide(a,b);
-            break;
 
     }
 
@@ -61,88 +57,78 @@ function clear(){
     currentScreenText.textContent = "";
     currentScreenResult.textContent = "";
     currentOperator = "";
-    firstNum = 0;
-    secondNum = 0;
+    firstNum = "";
+    secondNum = "";
+}
+
+function displayError(){
+    alert(errorMessage);
+    clear();
 }
 
 function updateScreen(e){
-    let currentScreenText = document.querySelector(".screen-text");
+    let currentScreenExpression = document.querySelector(".screen-text");
     let currentScreenResult = document.querySelector(".screen-result");
     
     const key = e.target.getAttribute("data-key");
 
-    //clear the screen if "=" at the start of expression or when the expression is incomplete
-    if(key=="="){
-        if(firstNum==0 || (firstNum!=0 && currentOperator!="" && !currentScreenResult.textContent) ){
-            clear();
-            return;
-        }        
-    }
-
-    //clear the screen if operators are clicked again before numbers
-    if(operators.includes(key) && key != "="){
-        if(!currentScreenResult.textContent){
-            clear();
-            return;
-        }
-    }
-
-    if(key=="clear"){
-
+    if(key==="clear"){
         clear();
+    }else{
 
-    }else if(operators.includes(key)){
+        if(operators.includes(key)){
+            
+            if(firstNum != ""){
 
-        if(firstNum == 0){
-            firstNum = Number.parseInt(currentScreenResult.textContent);
-            currentScreenText.textContent = currentScreenResult.textContent += key;
-            currentOperator = key;
-            currentScreenResult.textContent = "";
-
-        }else if(key == "=" ){          
-
-            secondNum = Number.parseInt(currentScreenResult.textContent);
-            console.log(currentOperator+" "+firstNum+" "+secondNum);
-            result = operate(currentOperator,firstNum,secondNum);
-
-            if(result == "ERROR"){
-                alert(errorMessage);
-                clear();
-                return;
-            }
-
-            currentScreenText.textContent = result;
-            firstNum = result;  
-            currentOperator = "";       
-            currentScreenResult.textContent = "";
-
-        }else{
-
-            if(currentScreenResult.textContent){
-                secondNum = Number.parseInt(currentScreenResult.textContent);
-                result = operate(currentOperator,firstNum,secondNum);
-
-                if(result == "ERROR"){
-                    alert(errorMessage);
-                    clear();
+                if(currentOperator == ""){
+                    currentScreenExpression.textContent += key;
+                    currentOperator = key;
+                    return;
+                }
+          
+                expressionArray = currentScreenExpression.textContent.toString().split(currentOperator);
+                secondNum = expressionArray[1];
+                
+                if(secondNum === "0" && currentOperator ==="÷" ||secondNum === "")
+                {  
+                    displayError();
                     return;
                 }
 
-                currentScreenText.textContent = result + key;
-                firstNum = result;  
-                currentOperator = key;       
-                currentScreenResult.textContent = "";
+                let result = operate(currentOperator,Number.parseInt(firstNum), Number.parseInt(secondNum));
+
+                if(result === "ERROR"){
+
+                    displayError();
+                    return;
+
+                }else{
+
+                    currentScreenResult.textContent = result;
+                    currentScreenExpression.textContent = result;
+                    firstNum = result;
+
+                    if(key!="=")
+                        currentOperator = key;
+                    else
+                        currentOperator = "";
+
+                    secondNum = "";
+                }
 
             }else{
-                currentScreenText.textContent = currentScreenText.textContent += key;
-                currentOperator = key;
-                currentScreenResult.textContent = "";
-            }
+                console.log("here");
+                displayError();
+                return;
+            }   
 
         }
 
-    }else{
-        currentScreenResult.textContent += key;
+        if(key!="="){
+            currentScreenExpression.textContent += key;       
+        }
+        
+        firstNum = currentScreenExpression.textContent;
     }
 
 }
@@ -151,7 +137,7 @@ const operators = ["+","-","x","÷","="];
 
 const keypads = document.querySelectorAll("li");
 let currentOperator = "";
-let firstNum = 0,secondNum = 0;
+let firstNum = "",secondNum = "";
 let errorMessage = "You cant do that here dimwit";
 
 keypads.forEach(keypad=>keypad.addEventListener('click', updateScreen));
